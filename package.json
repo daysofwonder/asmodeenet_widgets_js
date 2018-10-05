@@ -1,0 +1,36 @@
+{
+    "name": "asnet-wdg",
+    "version": "0.0.1",
+    "description": "Asmodee.net Widgets library",
+    "main": "index.js",
+    "directories": {
+        "example": "examples"
+    },
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "build": "npm run compile && npm run trans",
+        "compile": "./node_modules/.bin/coffee --transpile -c -o build/an_wdg.js src/an_wdg.coffee",
+        "minify": "./node_modules/.bin/uglifyjs --ie8 --compress --mangle -o dist/$npm_package_version/an_wdg.min.js --  build/lib/stackinfo.umd.js build/an_wdg.js build/trans.js",
+        "dev-server": "php -S 127.0.0.1:8080 -t examples",
+        "copy-prod": "./contrib/copy-widget-is-dep.rb prod $npm_package_version && npm run copy-deps prod $npm_package_version",
+        "copy-dev": "./contrib/copy-widget-is-dep.rb dev && npm run copy-deps dev",
+        "copy-deps": "./contrib/copy-deps.rb",
+        "trans": "./contrib/parse_for_trans_and_url.rb",
+        "dist": "npm run copy-prod && npm run build && npm run minify",
+        "lint": "./node_modules/.bin/coffeelint src/an_wdg.coffee"
+    },
+    "author": "Florent Ruard-Dumaine",
+    "license": "ISC",
+    "devDependencies": {
+        "@babel/core": "^7.1.2",
+        "@babel/preset-env": "^7.1.0",
+        "coffeelint": "^2.1.0",
+        "coffeescript": "^2.3.2",
+        "uglify-js": "^3.4.9"
+    },
+    "dependencies": {
+        "ana_sso.js": "git+https://github.com/daysofwonder/asmodeenet_sso_js.git#d80b970",
+        "asmodeenet-font": "git+https://github.com/daysofwonder/asmodeenet-font.git#0.0.3",
+        "stackinfo": "^1.1.5"
+    }
+}

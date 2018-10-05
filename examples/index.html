@@ -1,0 +1,127 @@
+<html>
+    <head>
+        <title>Asmodee.net JS Widget library example n°1</title>
+        <style>
+        h1 {font-size: 53px;margin: 0;padding: 0;color: #fcea6a;font-weight: normal;}
+        h2 {color: yellow;font-weight: bold;}
+        .navbar {position: fixed; top:0; width: 100%; height: 30px;background-color:black;}
+        .navbar #bt_connect { float: right;margin-right: 20px; }
+        .navbar #profile { vertical-align: middle;float: right;margin-right: 20px; }
+        .navbar #profile .chevron { font-size: 8px;cursor: pointer;}
+        .navbar #profile ul { background-color: lightgray;display: none;position: absolute;min-width: 80px;box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);z-index: 1;right: 0;}
+        .navbar #profile ul.show {display:block;}
+        .navbar #profile li { list-style: none; display: inline-block; position: relative;}
+        .navbar #profile li a { padding: 15px; min-height: 50px; display: block; position: relative;cursor: pointer;}
+        .navbar #profile img { width: 20px; height: 20px;    position: relative;top: 5px; }
+        body {background-color: black;color: white;}
+        .clearfix {clear: both;}
+        .main {margin-left:100px;}
+        header {color: #fff;font: 13px "Bevan", Helvetica Neue, Helvetica, Arial, sans-serif;text-transform: uppercase;text-shadow: 1px 1px 1px #000;width: 100%;min-width: 990px;height: 147px;margin: 10px 0 0 0;}
+        header .title {float: left;width: 800px;margin: 0;margin-top: 30px;margin-left: 100px;padding: 0 0 0 5px;background: #d03428;color: #fff;}
+        #user-activities-target {float:right;margin-right:10px;width: 245px; height: 637px;}
+        #buddies-activities-target {margin:10px;width: 450px; height: 490px;}
+        #buddies-collection-target {margin:10px;width: 440px; height: 190px;}
+        #user-public-collection-target {margin:10px;width: 440px; height: 300px;}
+        #user-public-activities-target {margin:10px;width: 500px; height: 644px;}
+        .container-wdgs {display: flex;flex-wrap:wrap;}
+        </style>
+        <script src="an_sso.min.0.3.2-1.js"></script>
+        <!-- Load file for dev -->
+        <script src="lib/stackinfo.umd.js"></script>
+        <script src="an_wdg.js"></script>
+        <script src="trans.js"></script>
+
+        <!-- Load file for prod -->
+        <!-- <script src="dist/0.0.1/an_wdg.min.js"></script> -->
+    </head>
+    <body>
+        <script>AsmodeeNet.trackCb(false);</script>
+        <nav class="navbar"><button id="bt_connect">Login</button>
+        <div id="profile" style="display:none;">
+            <a id="toggleLink">Hello <span id="user_name"></span>. <img id="user_avatar" src="" class="avatar" />&nbsp;<span class="chevron">▼</span></a>
+            <ul id="dropdown-content">
+                <li><a id="disconnect_bt">Sign Out</a></li>
+            </ul>
+        </div></nav>
+        <div class="main">
+            <header>
+                <div class="title"><h1>Asmodee.net JS Widget lib example n°1</h1></div>
+                <div class="clearfix"></div>
+            </header>
+            <div id="user-activities-target"></div>
+            <div>
+
+                <h2>Pirate Ipsum</h2>
+                <p>Admiral of the Black brigantine reef Spanish Main jib clipper red ensign blow the man down. Bilge pressgang starboard heave to Yellow Jack trysail carouser Jolly Roger. Cable maroon careen barkadeer topgallant heave to Spanish Main holystone. Ye jury mast sutler spirits cable gaff Cat o'nine tails belay. Scallywag measured fer yer chains starboard sloop yard chase guns belay long boat. Jack interloper doubloon tack Spanish Main squiffy swab lugsail. Buccaneer Jack Ketch lee aye maroon parrel cog Yellow Jack. Jolly Roger galleon killick line bilged on her anchor clipper fore sutler. Booty barkadeer transom matey snow carouser gally hail-shot.</p>
+
+                <p>Hulk grog blossom rum marooned sheet bucko bilge tackle. Pillage chase Plate Fleet crimp Letter of Marque hang the jib Yellow Jack Jack Ketch. Sail ho hardtack splice the main brace walk the plank sloop capstan boom Cat o'nine tails. Measured fer yer chains plunder Admiral of the Black loaded to the gunwalls six pounders weigh anchor lateen sail jury mast. Cable ho dead men tell no tales hempen halter league black spot walk the plank case shot. Yardarm spike me Jack Tar swing the lead reef squiffy barque. Gally clipper killick American Main squiffy chandler Cat o'nine tails belaying pin. Overhaul bowsprit spike keelhaul come about Plate Fleet barkadeer weigh anchor. Nipperkin Letter of Marque brig Barbary Coast smartly nipper jack gabion.</p>
+
+                <p>Blimey Gold Road overhaul gabion brigantine boatswain topgallant tender. Crimp squiffy ballast Privateer jolly boat red ensign cackle fruit jib. Run a shot across the bow ye fire ship no prey, no pay transom Gold Road haul wind black jack. Tackle crimp pink gangway American Main dead men tell no tales yardarm tack. Lee hang the jib rutters yawl sutler sheet code of conduct gangplank. Yo-ho-ho spyglass Buccaneer marooned gally driver no prey, no pay Sink me. Furl wench Yellow Jack pinnace fire ship lugsail Shiver me timbers topsail. Crow's nest trysail Plate Fleet ballast pink scourge of the seven seas cackle fruit barkadeer. Pieces of Eight killick boom broadside bilge maroon Sail ho crow's nest.</p>
+            </div>
+            <div class="container-wdgs">
+                <div id="buddies-activities-target"></div>
+                <div id="buddies-collection-target"></div>
+                <div id="user-public-collection-target"></div>
+                <div id="user-public-activities-target"></div>
+            </div>
+        </div>
+        <script>
+        function findMe(id) {
+            return document.getElementById(id);
+        }
+        function displayWidget(name, options) {
+            options = options || {};
+            AsmodeeNet.injectWidget(name, '#' + name + '-target',window.AsmodeeNet.extend({
+                module: name,
+                zoom: '0.7'
+            }, options));
+        }
+        function signed () {
+            console.log('signed!!');
+            var identity = AsmodeeNet.getIdentity();
+            findMe('user_name').textContent = identity.nickname;
+            findMe('user_avatar').src = identity.picture;
+            findMe('bt_connect').style.display = 'none';
+            findMe('profile').style.display = 'block';
+            displayWidget('user-activities', {userProfile: {id: 'me'}});
+            displayWidget('buddies-activities');
+            displayWidget('buddies-collection', {bodyHeight: '160px'});
+            displayWidget('user-public-collection', {userProfile: {id: 618}});
+            displayWidget('user-public-activities', {module: 'user-activities', userProfile: {id: 618}});
+        }
+        findMe('bt_connect').addEventListener('click', function() {
+            AsmodeeNet.signIn({
+                success: signed,
+                error: function() {
+                    echo("SIGNIN ERROR", arguments);
+                }
+            });
+        });
+        findMe('disconnect_bt').addEventListener('click', function() {
+            AsmodeeNet.signOut();
+        });
+        findMe('toggleLink').addEventListener('click', function (ev) {
+            ev.preventDefault();
+            findMe('dropdown-content').classList.toggle('show');
+        });
+
+        AsmodeeNet.init({
+            // Required parameters
+            client_id: 'test_direct', //'openid-dow',
+            redirect_uri: 'http://localhost:8080/',
+            cancel_uri: 'http://localhost:8080/?cancel=1',
+            base_is_host: 'http://localhost:8009/', // https://account.asmodee.net
+            base_url: 'http://localhost:8008/main', //https://api.asmodee.net/main
+            scope: 'openid+public+private+profile',
+            response_type: 'code id_token token',
+            display: 'page',
+            logout_redirect_uri: 'http://localhost:8080/?logout_redirect=1',
+            callback_signin_success: signed,
+            callback_signin_error: function() {
+                console.log("SIGNIN ERROR", arguments);
+            },
+        }).discover();
+        AsmodeeNet.Widget.init({lang: 'fr'});
+        </script>
+    </body>
+</html>
