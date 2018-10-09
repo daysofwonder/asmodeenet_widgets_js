@@ -143,14 +143,17 @@ Example:
     - `options`:
         - `userProfile`: {id: ['me' OR user ID]} *(mandatory)*
 
-![](/docs/screenshots/current_user_activities_mobile.png)
 *Current User activities with Mobile-like space (example: _{userProfile: {id: 'me'}}_)*
 
-![](/docs/screenshots/current_user_activities_desktop.png)
+![](/docs/screenshots/current_user_activities_mobile.png)
+
 *Current User activities with Desktop-like space (example: _{userProfile: {id: 'me'}}_)*
 
-![](/docs/screenshots/public_activities_of_a_user.png)
+![](/docs/screenshots/current_user_activities_desktop.png)
+
 *Public activities of a specific user (_{userProfile: {id: 618}}_)*
+
+![](/docs/screenshots/public_activities_of_a_user.png)
 
 - `User's public collection`
     - `name`: `user-public-collection`
