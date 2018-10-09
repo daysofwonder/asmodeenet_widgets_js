@@ -5,7 +5,7 @@ This library provides access to some widgets usable in your website, and giving 
 
 These widgets are pure javascript code (internally written using Vue.js) injectable in your page without other dependencies than the main [Asmodee.net SSO JS](https://github.com/daysofwonder/asmodeenet_sso_js) library.
 
-`Important`: When you call the SSO init library, you pass a *client_id* for the configuration of user's connection. To be able to use the Widget library, the client id of you app should be authorized server side. For this, contact us to authorize it.
+`Important`: When you call the [init](https://github.com/daysofwonder/asmodeenet_sso_js#initialization) of the SSO library, you pass a *client_id* for the configuration of user's connection. To be able to use the Widget library, the client id of your app should be authorized server side. For this, contact us to add to whitelist.
 
 **Table of contents**
 * [Installation](#installation)
