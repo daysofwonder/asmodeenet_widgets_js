@@ -143,18 +143,39 @@ Example:
     - `options`:
         - `userProfile`: {id: ['me' OR user ID]} *(mandatory)*
 
+![](/docs/screenshots/current_user_activities_mobile.png)
+*Current User activities with Mobile-like space (example: _{userProfile: {id: 'me'}}_)*
+
+![](/docs/screenshots/current_user_activities_desktop.png)
+*Current User activities with Desktop-like space (example: _{userProfile: {id: 'me'}}_)*
+
+![](/docs/screenshots/public_activities_of_a_user.png)
+*Public activities of a specific user (_{userProfile: {id: 618}}_)*
 
 - `User's public collection`
     - `name`: `user-public-collection`
     - `options`:
         - `userProfile`: {id: ['me' OR user ID]} *(mandatory)*
 
+![](/docs/screenshots/public_collection_of_a_user.png)
+*Public collection of a specific user (example: _{userProfile: {id: 618}}_)*
+
 
 - `User's buddies' activities`
     -  `name`: `buddies-activities`
+
+![](/docs/screenshots/buddies_activity_mobile.png)
+*Buddies activity in mobile view*
+
+![](/docs/screenshots/buddies_activity_tablet.png)
+*Buddies activity in tablet view*
+
+![](/docs/screenshots/buddies_activity_desktop.png)
+*Buddies activity in desktop view*
 
 
 - `User's buddies' collection` (Which games are present in buddies' collection and which are the most played)
     - `name`: `buddies-collection`
 
-## Examples
+![](/docs/screenshots/buddies_collection.png)
+*Buddies collection*
