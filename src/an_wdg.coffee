@@ -129,7 +129,7 @@ window.AsmodeeNet.Widget = (->
         anSettings = window.AsmodeeNet.getSettings()
         settings.is_host = anSettings.base_is_host
         settings.api_url = anSettings.base_url
-        settings.lang = options.lang
+        settings.lang = options.lang if options && options.lang
         injectMainWdgLib()
 
 )()

@@ -1,5 +1,5 @@
 Skip to content
- 
+
 Search or jump to…
 
 Pull requests
@@ -13,7 +13,7 @@ Explore
 asmodeenet_widgets_js/.gitignore
 6edc6d6  a minute ago
 @atalargo atalargo Initial commit
-     
+
 62 lines (44 sloc)  914 Bytes
 # Logs
 logs
@@ -53,6 +53,8 @@ build/Release
 node_modules/
 jspm_packages/
 
+build/
+
 # TypeScript v1 declaration files
 typings/
 
@@ -90,4 +92,3 @@ Blog
 About
 Press h to open a hovercard with more details.
 Support us  •  Feedback?
-

@@ -8,6 +8,8 @@ re = %r/asnet_wc\(['"][-\w#\.]*['"],\s*(\{.*?(}\);|<\/script>))/
 transkeys = {}
 allurls = {}
 
+LOCALES = %w[en fr de].freeze
+
 error = false
 Dir.glob(File.join(File.realpath(IS_ROOT), 'src', 'views', '**', '*.twig')).each do |twig|
     File.open(twig) do |f|
@@ -63,14 +65,15 @@ else
     print "\n\tFound #{transkeys.keys.count} translation keys globally\n\tFound #{allurls.keys.count} url keys globally\n\n"
 
     # Load Xliff files
-    xliff = Hash[%w[en fr de].map do |lang|
+    xliff = Hash[LOCALES.map do |lang|
         [
             lang,
             Nokogiri::XML(File.open("#{IS_ROOT}/resources/messages.#{lang}.xlf"))
         ]
     end]
 
-    translations = { 'en' => {}, 'fr' => {}, 'de' => {} }
+    translations = Hash[LOCALES.map { |l| [l, {}] }]
+
     transkeys.each_pair do |k, v|
         v.gsub!(/(\{\{|'|}}|\s)/, '')
         print "Search trad for `#{v}`...\n"
