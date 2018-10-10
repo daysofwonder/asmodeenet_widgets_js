@@ -23,7 +23,9 @@
         #buddies-collection-target {margin:10px;width: 440px; height: 190px;}
         #user-public-collection-target {margin:10px;width: 440px; height: 300px;}
         #user-public-activities-target {margin:10px;width: 500px; height: 644px;}
-        .container-wdgs {display: flex;flex-wrap:wrap;}
+        #user-public-collection-unlogged-target {margin:10px;width: 440px; height: 300px;}
+        #user-public-activities-unlogged-target {margin:10px;width: 500px; height: 644px;}
+        #container-wdgs, #unlogged-container-wdgs {display: flex;flex-wrap:wrap;}
         </style>
         <script src="an_sso.min.0.3.2-1.js"></script>
         <!-- Load file for dev -->
@@ -32,7 +34,7 @@
         <script src="trans.js"></script> -->
 
         <!-- Load file for prod -->
-        <script src="dist/0.0.1/an_wdg.min.js"></script>
+        <script src="dist/0.0.2/an_wdg.min.js"></script>
     </head>
     <body>
         <script>AsmodeeNet.trackCb(false);</script>
@@ -58,11 +60,15 @@
 
                 <p>Blimey Gold Road overhaul gabion brigantine boatswain topgallant tender. Crimp squiffy ballast Privateer jolly boat red ensign cackle fruit jib. Run a shot across the bow ye fire ship no prey, no pay transom Gold Road haul wind black jack. Tackle crimp pink gangway American Main dead men tell no tales yardarm tack. Lee hang the jib rutters yawl sutler sheet code of conduct gangplank. Yo-ho-ho spyglass Buccaneer marooned gally driver no prey, no pay Sink me. Furl wench Yellow Jack pinnace fire ship lugsail Shiver me timbers topsail. Crow's nest trysail Plate Fleet ballast pink scourge of the seven seas cackle fruit barkadeer. Pieces of Eight killick boom broadside bilge maroon Sail ho crow's nest.</p>
             </div>
-            <div class="container-wdgs">
+            <div id="container-wdgs" style="display: none;">
                 <div id="buddies-activities-target"></div>
                 <div id="buddies-collection-target"></div>
                 <div id="user-public-collection-target"></div>
                 <div id="user-public-activities-target"></div>
+            </div>
+            <div id="unlogged-container-wdgs">
+                <div id="user-public-collection-unlogged-target"></div>
+                <div id="user-public-activities-unlogged-target"></div>
             </div>
         </div>
         <script>
@@ -79,15 +85,19 @@
         function signed () {
             console.log('signed!!');
             var identity = AsmodeeNet.getIdentity();
-            findMe('user_name').textContent = identity.nickname;
-            findMe('user_avatar').src = identity.picture;
-            findMe('bt_connect').style.display = 'none';
-            findMe('profile').style.display = 'block';
-            displayWidget('user-activities', {userProfile: {id: 'me'}});
-            displayWidget('buddies-activities');
-            displayWidget('buddies-collection', {bodyHeight: '160px'});
-            displayWidget('user-public-collection', {userProfile: {id: 618}});
-            displayWidget('user-public-activities', {module: 'user-activities', userProfile: {id: 618}});
+            if (identity) {
+                findMe('user_name').textContent = identity.nickname;
+                findMe('user_avatar').src = identity.picture;
+                findMe('bt_connect').style.display = 'none';
+                findMe('profile').style.display = 'block';
+                displayWidget('user-activities', {userProfile: {id: 'me'}});
+                displayWidget('buddies-activities');
+                displayWidget('buddies-collection', {bodyHeight: '160px'});
+                displayWidget('user-public-collection', {userProfile: {id: 618}});
+                displayWidget('user-public-activities', {module: 'user-activities', userProfile: {id: 618}});
+                findMe('unlogged-container-wdgs').style.display = 'none';
+                findMe('container-wdgs').style.display = 'flex';
+            }
         }
         findMe('bt_connect').addEventListener('click', function() {
             AsmodeeNet.signIn({
@@ -107,11 +117,11 @@
 
         AsmodeeNet.init({
             // Required parameters
-            client_id: 'test_direct', //'openid-dow',
+            client_id: 'openid-dow', // 'test_direct', //
             redirect_uri: 'http://localhost:8080/',
             cancel_uri: 'http://localhost:8080/?cancel=1',
-            base_is_host: 'http://localhost:8009/', // https://account.asmodee.net
-            base_url: 'http://localhost:8008/main', //https://api.asmodee.net/main
+            base_is_host: 'https://account.asmodee.net', // http://localhost:8009/
+            base_url: 'https://api.asmodee.net/main', // http://localhost:8008/main
             scope: 'openid+public+private+profile',
             response_type: 'code id_token token',
             display: 'page',
@@ -122,6 +132,8 @@
             },
         }).discover();
         AsmodeeNet.Widget.init({lang: 'fr'});
+        displayWidget('user-public-collection-unlogged', {module: 'user-public-collection', userProfile: {id: 618}});
+        displayWidget('user-public-activities-unlogged', {module: 'user-activities', userProfile: {id: 618}});
         </script>
     </body>
 </html>

@@ -51,6 +51,24 @@ window.AsmodeeNet.Widget = (->
     findElement = (cssSelector) ->
         if cssSelector.indexOf('#') != -1 then window.document.getElementById(cssSelector.replace('#', '')) else window.document.getElementsByClassName(cssSelector)[0]
 
+    emitUnlogged = (pushTarget) ->
+        pushTarget.push('user-unlogged', {
+            url: settings.is_host.replace(/\/$/) + '/' + settings.lang + '/prx',
+            token: null, userId: null, expires: null, avatar: null,
+            scopes: 'public'
+        })
+
+    emitLogged = (pushTarget, token) ->
+        tok = jwt_decode(token)
+        pushTarget.push('user-connected', {
+            url: settings.api_url,
+            token: token,
+            userId: tok.sub,
+            expires: tok.exp,
+            scopes: window.AsmodeeNet.getScopes(),
+            avatar: window.AsmodeeNet.getIdentity().picture
+        })
+
     inject: (name, targetElementSelector, options) ->
         if typeof window.asnet_wc != 'undefined'
             elparent = window.document.getElementById(targetElementSelector.replace('#', ''))
@@ -81,15 +99,11 @@ window.AsmodeeNet.Widget = (->
                 if typeof ifrm.contentWindow.asnet_wc != 'undefined' && typeof ifrm.contentWindow.asnetbus != 'undefined'
                     ifrm.contentWindow.asnetbus.$emit('init-all', initAllSetting())
                     # ifrm.contentWindow.asnetbus = window.asnetbus
-                    tok = jwt_decode(window.AsmodeeNet.getAccessToken())
-                    ifrm.contentWindow.asnetbus.push('user-connected', {
-                        url: settings.api_url,
-                        token: window.AsmodeeNet.getAccessToken(),
-                        userId: tok.sub,
-                        expires: tok.exp,
-                        scopes: window.AsmodeeNet.getScopes(),
-                        avatar: window.AsmodeeNet.getIdentity().picture
-                    })
+                    tok = window.AsmodeeNet.getAccessToken()
+                    if tok
+                        emitLogged(ifrm.contentWindow.asnetbus, tok)
+                    else
+                        emitUnlogged(ifrm.contentWindow.asnetbus)
                 else
                     setTimeout timint, 10
             timint()
@@ -106,24 +120,9 @@ window.AsmodeeNet.Widget = (->
                 window.asnetbus.push('init-all', initAllSetting())
 
                 if isGuest()
-                    window.asnetbus.push('user-unlogged', {
-                        url: settings.is_host.replace(/\/$/) + '/' + settings.lang + '/prx',
-                        token: null,
-                        userId: null,
-                        expires: null,
-                        avatar: null,
-                        scopes: 'public'
-                    })
+                    emitUnlogged(window.asnetbus)
                 else
-                    tok = jwt_decode(window.AsmodeeNet.getAccessToken())
-                    asnetbus.push('user-connected', {
-                        url: settings.api_url,
-                        token: window.AsmodeeNet.getAccessToken(),
-                        userId: tok.sub,
-                        expires: tok.exp,
-                        scopes: window.AsmodeeNet.getScopes(),
-                        avatar: window.AsmodeeNet.getIdentity().picture
-                    })
+                    emitLogged(window.asnetbus, window.AsmodeeNet.getAccessToken())
 
     init: (options) ->
         anSettings = window.AsmodeeNet.getSettings()
