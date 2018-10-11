@@ -1,13 +1,13 @@
 AsmodeeNet Widget JS Library
 --------------
 
-This library provides access to some widgets usable in your website, and giving some user's profile information, like you can have on the Asmodee.net Account's profile page.
+This library provides access to some Widgets usable directly in your own website. These Widgets give some user profile information pieces, like the ones you can see on the Asmodee.net Account Profile pages.
 
-These widgets are pure javascript code (internally written using Vue.js) injectable in your page without other dependencies than the main [Asmodee.net SSO JS](https://github.com/daysofwonder/asmodeenet_sso_js) library.
+These Widgets are pure javascript code (internally written using Vue.js) injectable in your page without any other dependencies than the main [Asmodee.net SSO JS](https://github.com/daysofwonder/asmodeenet_sso_js) library.
 
-`Important`: When you call the [init](https://github.com/daysofwonder/asmodeenet_sso_js#initialization) of the SSO library, you pass a *client_id* for the configuration of user's connection. To be able to use the Widget library, the client id of your app should be authorized server side. For this, contact us to add to whitelist.
+`Important`: When you call the [init](https://github.com/daysofwonder/asmodeenet_sso_js#initialization) of the SSO library, you pass a *client_id* for the configuration of the user's connection. To be able to use the Widget library, the client id of your app should be authorized server side. Contact us so that we add your app to the whitelist.
 
-It could be used for logged or unlogged user. For unlogged, not all widgets are usable. (cf. [Widgets list](#widgets-list))
+The library can be used for logged or unlogged user. For unlogged users, not all Widgets are usable (cf. [Widgets list](#widgets-list)).
 
 **Table of contents**
 * [Installation](#installation)
@@ -22,7 +22,7 @@ It could be used for logged or unlogged user. For unlogged, not all widgets are 
 
 ## Installation
 
-Like writed in the introduction, you should have installed the [Asmodee.net SSO JS](https://github.com/daysofwonder/asmodeenet_sso_js) before.
+Like written in the introduction, you should have installed the [Asmodee.net SSO JS](https://github.com/daysofwonder/asmodeenet_sso_js) before.
 
 ```shell
 npm install --save git+https://github.com/daysofwonder/asmodeenet_widgets_js.git
@@ -32,27 +32,27 @@ npm install --save git+https://github.com/daysofwonder/asmodeenet_widgets_js.git
 
 ### a) Inject the library
 
-In your HTML, you should load the main JS library of this Widgets library just after the load of Asmodee.net SSO JS
+In your HTML code, you should load the main JS library of this Widgets library just after loading the Asmodee.net SSO JS library.
 
 ```html
 <script src="an_sso.min.0.3.2-1.js"></script>
 <script src="dist/0.0.2/an_wdg.min.js"></script>
 ```
 
-When you deploy your code, it's important to deploy all the content of the directory corresponding to the version you use. By example, if you use the first distributed version, `0.0.2`, you should deploy all the directory `dist/0.0.2`
+When you deploy your code, it's important to deploy all the content of the directory corresponding to the version you use. For example, if you use the first distributed version, `0.0.2`, you should deploy the entire `dist/0.0.2` directory.
 
 ### b) HTML tag(s)
 
-After this you should include some html tag for the widget you want to display.
+After this, you should include some HTML tag to indicate where the Widget should be displayed.
 
 Ex.:
 ```html
 <div id="user_activities_tgt"></div>
 ```
 
-A CSS selector path should be used later to indicate where to inject the widget, so giving the id of the tag (*`#user_activities_tgt`*)
+A CSS selector path will be used later to indicate where to inject the Widget by giving the id of the tag (*`#user_activities_tgt`*).
 
-You could add many tags in the page, for different widgets or to add same widget many times (with or without same configuration)
+You can add several tags in the page, for different Widgets, or add the same Widget several times (with or without the same configuration).
 
 ### c) Javascript call
 
@@ -68,11 +68,11 @@ AsmodeeNet.init({
 AsmodeeNet.Widget.init({lang: 'fr'});
 ```
 
-Have you see, you should pass a JS object with the locale configuration to use for texts in widgets.
+As you can see, you should pass a JS object with the locale configuration (language) to use for texts in Widgets.
 
-Indeed, the Widget library comes with a translation system used to some static parts in 3 languages currently: English (`en`, the default), French (`fr`) and German (`de`).
+Indeed, the Widget library comes with a translation system used for some static parts in 3 languages (at the moment): English (`en`, the default), French (`fr`) and German (`de`).
 
-For unlogged Widgets, you can inject them directly after the initialization of the Widget library.
+For unlogged Widgets, you can inject them directly after the initialization of the Widget library:
 
 ```javascript
 AsmodeeNet.Widget.init({lang: 'fr'});
@@ -80,7 +80,7 @@ AsmodeeNet.Widget.inject('user-public-collection', '#public_collection_' + 67389
 AsmodeeNet.Widget.inject('user-public-activities', '#public_activities_' + 673890 + '_tgt', {userProfile: {id: 673890}});
 ```
 
-When the user is connected, you could call the injection of all widgets. So you can add the injection into the callback method of success of SSO connect.
+When the user is connected, you can call the injection of all Widgets. Therefore the easiest is to place the injection code inside the success callback method of the SSO connection:
 
 ```javascript
 function userIsConnected () {
@@ -89,11 +89,11 @@ function userIsConnected () {
 }
 ```
 
-This inject the widget named *user_activities* inside the html tag with the id *user_activities_tgt*. And that's all!
+This injects the Widget named *user_activities* inside the HTML tag with the id *user_activities_tgt*. And that's all!
 
-`Important`: When you call the SSO init library, you pass a *client_id* for the configuration of user's connection. To be able to use the Widget library, the client id of you app should be authorized server side. For this, contact us to authorize it.
+`Important`: When you call the SSO init library, you pass a *client_id* for the configuration of the user's connection. To be able to use the Widget library, the client id of your app should be authorized server side. For this, contact us so that we can whitelist your app.
 
-## Advanced use
+## Advanced Use
 
 ### API
 
@@ -114,16 +114,16 @@ AsmodeeNet.Widget.init({lang: 'fr'});
 
 #### inject
 
-Method to inject and display a widget in the page. You should call it for each widget you want to add in your page (even, if you want to display the same one more than once).
+Method to inject and display a Widget in the page. You should call it for each Widget you want to add in your page (even if you want to display the same one more than once).
 
 Parameters:
-* `name`: _string_, mandatory. The name of the widget you want to add. You can find the list here [Widgets list](#widgets-list)
-* `targetElementSelector`: _string_, mandatory. The ID of the HTML tag used as target to place the widget. It should be a CSS Path selector ID (_#IDSTRING_)
-* `options`: _object_, optional. Some global options available for all widgets. Some specific widgets could add mandatory option parametrizable using this `options` object. In this case, the options will be describe in the [Widgets list](#widgets-list).
-    - _`width`_: _mixte_, optional. If you want to force a specifc width for the widget you should indicate here. It's taking the same type of value of the CSS width parameter : a specific width in pixel (`100px`) or in percentage (`50%`).
-    - _`zoom`_: _float_, optional. A CSS zoom factor to apply on the widget.
+* `name`: _string_, mandatory. The name of the Widget you want to add. You can find the list here [Widgets list](#widgets-list)
+* `targetElementSelector`: _string_, mandatory. The ID of the HTML tag used as target to place the Widget. It should be a CSS Path selector ID (_#IDSTRING_)
+* `options`: _object_, optional. Some global options available for all Widgets. Some specific Widgets could add mandatory option parametrizable using this `options` object. In this case, the options will be described in the [Widgets list](#widgets-list).
+    - _`width`_: _mixte_, optional. If you want to force a specifc width for the Widget, indicate it here. It's taking the same type of value of the CSS width parameter: a specific width in pixel (`100px`) or in percentage (`50%`).
+    - _`zoom`_: _float_, optional. A CSS zoom factor to apply on the Widget.
 
-Asmodee.net Widgets use Media queries for their display. So they are desktop views, mobile view, tablet view, etc. Playing with values of _`width`_ and _`zoom`_ permits to display widgets with a desktop view, by example, in a small space authorized (so to prevent the activation of the mobile view).
+Asmodee.net Widgets use Media queries for their display. So there are desktop views, mobile views, tablet views, etc. Playing with values of _`width`_ and _`zoom`_ allows to display Widgets with a desktop view, by example, in a small authorized space (to prevent the activation of the mobile view).
 
 Example:
 
@@ -137,7 +137,7 @@ AsmodeeNet.Widgets.inject('user-activities', '#place_of_user_activities_2', {wid
 
 This method is a proxy of the `inject` one but directly usable on the AsmodeeNet's namespace.
 
-Parameters: Same as [inject](#inject)
+Parameters: same as [inject](#inject)
 
 Example:
  ```javascript
@@ -148,7 +148,7 @@ Example:
 
 ### Widgets list
 
-- `User activities` (of the current connected user or the public activities of another user). if userProfile.id is worth `'me'`, the widget is usable only in `logged` mode, if it's worth a user ID, could be used in `logged` and `unlogged` mode.
+- `User activities` (of the current connected user or the public activities of another user). if userProfile.id is set to `'me'`, the Widget is usable only in `logged` mode. If it's set to a user ID, it can be used in `logged` and `unlogged` modes.
     - `name`: `user-activities` *(mandatory)*
     - `options`:
         - `userProfile`: {id: ['me' OR user ID]} *(mandatory)*
@@ -192,7 +192,7 @@ Example:
 | *Buddies activity in desktop view* |
 
 
-- `User's buddies' collection` (Which games are present in buddies' collection and which are the most played). Only in `logged` mode.
+- `User's buddies' collection` (Which games are present in the Buddies' collection and which ones are the most played). Only in `logged` mode.
     - `name`: `buddies-collection`
 
 | ![](/docs/screenshots/buddies_collection.png) |
@@ -201,13 +201,13 @@ Example:
 
 ## Example
 
-To launch the example, launch the following commands in shell:
+To launch the example, type the following commands in shell:
 
 ```bash
 npm install
 npm run dev-server
 ```
 
-You can change configuration for SSO (client_id, API Url, ...) in the file `examples/index.html`.
+You can change the configuration for SSO (client_id, API Url, ...) in the file `examples/index.html`.
 
 Open a browser, and go to [http://localhost:8080](http://localhost:8080)
