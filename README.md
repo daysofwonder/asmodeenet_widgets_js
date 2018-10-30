@@ -150,7 +150,7 @@ Example:
 ### Widgets list
 
 - `V-Card` Display a v-card for a given user, with some generic, and public, information. Usable in unlogged and logged mode.
-    - `name`: `vcard` *(mandatory)*
+    - `name`: `v-card` *(mandatory)*
     - `options`:
         - `userProfile`: {id: [user ID]} *(mandatory)*
         - `bodyHeight`: "[height in pixel or %]" *(optional)* _mixte_, If you want to force a specifc height for the bdoy part of the widget, indicate it here. It's taking the same type of value of the CSS height parameter: a specific height in pixel (`100px`) or in percentage (`50%`).
