@@ -25,6 +25,8 @@
         #user-public-activities-target {margin:10px;width: 500px; height: 644px;}
         #user-public-collection-unlogged-target {margin:10px;width: 440px; height: 300px;}
         #user-public-activities-unlogged-target {margin:10px;width: 500px; height: 644px;}
+        #vcard-4-target {margin: 10px; width: 550px;height: 200px;}
+        #vcard-618-target {margin: 5px; width: 170px;height: 320px;float: right;}
         #container-wdgs, #unlogged-container-wdgs {display: flex;flex-wrap:wrap;}
         </style>
         <script src="an_sso.min.0.3.2-1.js"></script>
@@ -34,7 +36,7 @@
         <script src="trans.js"></script> -->
 
         <!-- Load file for prod -->
-        <script src="dist/0.0.2/an_wdg.min.js"></script>
+        <script src="dist/0.0.3/an_wdg.min.js"></script>
     </head>
     <body>
         <script>AsmodeeNet.trackCb(false);</script>
@@ -59,21 +61,26 @@
                 <p>Hulk grog blossom rum marooned sheet bucko bilge tackle. Pillage chase Plate Fleet crimp Letter of Marque hang the jib Yellow Jack Jack Ketch. Sail ho hardtack splice the main brace walk the plank sloop capstan boom Cat o'nine tails. Measured fer yer chains plunder Admiral of the Black loaded to the gunwalls six pounders weigh anchor lateen sail jury mast. Cable ho dead men tell no tales hempen halter league black spot walk the plank case shot. Yardarm spike me Jack Tar swing the lead reef squiffy barque. Gally clipper killick American Main squiffy chandler Cat o'nine tails belaying pin. Overhaul bowsprit spike keelhaul come about Plate Fleet barkadeer weigh anchor. Nipperkin Letter of Marque brig Barbary Coast smartly nipper jack gabion.</p>
 
                 <p>Blimey Gold Road overhaul gabion brigantine boatswain topgallant tender. Crimp squiffy ballast Privateer jolly boat red ensign cackle fruit jib. Run a shot across the bow ye fire ship no prey, no pay transom Gold Road haul wind black jack. Tackle crimp pink gangway American Main dead men tell no tales yardarm tack. Lee hang the jib rutters yawl sutler sheet code of conduct gangplank. Yo-ho-ho spyglass Buccaneer marooned gally driver no prey, no pay Sink me. Furl wench Yellow Jack pinnace fire ship lugsail Shiver me timbers topsail. Crow's nest trysail Plate Fleet ballast pink scourge of the seven seas cackle fruit barkadeer. Pieces of Eight killick boom broadside bilge maroon Sail ho crow's nest.</p>
+                <div class="container-wdgs" style="display: none;"><div id="vcard-618-target"></div></div>
             </div>
-            <div id="container-wdgs" style="display: none;">
+            <div id="vcard-4-target"></div>
+            <div class="container-wdgs" style="display: none;">
                 <div id="buddies-activities-target"></div>
                 <div id="buddies-collection-target"></div>
                 <div id="user-public-collection-target"></div>
                 <div id="user-public-activities-target"></div>
             </div>
-            <div id="unlogged-container-wdgs">
+            <div class="unlogged-container-wdgs">
                 <div id="user-public-collection-unlogged-target"></div>
                 <div id="user-public-activities-unlogged-target"></div>
             </div>
         </div>
         <script>
-        function findMe(id) {
-            return document.getElementById(id);
+        function findMe(idOrClass, byClass) {
+            if (byClass) {
+                return document.getElementsByClassName(idOrClass);
+            }
+            return document.getElementById(idOrClass);
         }
         function displayWidget(name, options) {
             options = options || {};
@@ -95,8 +102,15 @@
                 displayWidget('buddies-collection', {bodyHeight: '160px'});
                 displayWidget('user-public-collection', {userProfile: {id: 618}});
                 displayWidget('user-public-activities', {module: 'user-activities', userProfile: {id: 618}});
-                findMe('unlogged-container-wdgs').style.display = 'none';
-                findMe('container-wdgs').style.display = 'flex';
+                displayWidget('vcard-618', {module: 'v-card', userProfile: {id: 5}, width:'180px', height: '280px', bodyHeight: '200px', zoom: .8});
+                var wdgs = findMe('unlogged-container-wdgs', true);
+                for(var i = 0; i < wdgs.length; i++) {
+                    wdgs[i].style.display = 'none';
+                }
+                var wdgs = findMe('container-wdgs', true);
+                for(var i = 0; i < wdgs.length; i++) {
+                    wdgs[i].style.display = 'flex';
+                }
             }
         }
         findMe('bt_connect').addEventListener('click', function() {
@@ -134,6 +148,7 @@
         AsmodeeNet.Widget.init({lang: 'fr'});
         displayWidget('user-public-collection-unlogged', {module: 'user-public-collection', userProfile: {id: 618}});
         displayWidget('user-public-activities-unlogged', {module: 'user-activities', userProfile: {id: 618}});
+        displayWidget('vcard-4', {module: 'v-card', userProfile: {id: 4}, height: '200px', bodyHeight: '180px', zoom: .9});
         </script>
     </body>
 </html>

@@ -38,14 +38,17 @@ window.AsmodeeNet.Widget = (->
         scripts.parentNode.insertBefore(main, scripts.nextSibling)
 
     injectMainWdgLib = () ->
-        man = document.createElement('script')
-        man.src = settings.base_file_path + '/lib/manifest.js'
-        scripts = document.getElementsByTagName('script')[0]
-        scripts.parentNode.insertBefore(man, scripts)
-        vend = document.createElement('script')
-        vend.src = settings.base_file_path + '/lib/vendor.js'
-        vend.onload = () -> window.AsmodeeNet.Widget.asnetapiOnLoad(true)
-        man.parentNode.insertBefore(vend, man.nextSibling)
+        if CryptoJS == undefined
+            setTimeout(injectMainWdgLib, 100)
+        else
+            man = document.createElement('script')
+            man.src = settings.base_file_path + '/lib/manifest.js'
+            scripts = document.getElementsByTagName('script')[0]
+            scripts.parentNode.insertBefore(man, scripts)
+            vend = document.createElement('script')
+            vend.src = settings.base_file_path + '/lib/vendor.js'
+            vend.onload = () -> window.AsmodeeNet.Widget.asnetapiOnLoad(true)
+            man.parentNode.insertBefore(vend, man.nextSibling)
 
 
     findElement = (cssSelector) ->
@@ -82,6 +85,7 @@ window.AsmodeeNet.Widget = (->
                 ifrm.contentWindow.document).open()
 
             doc.write('<html><head><meta name="viewport" content="width=device-width, initial-scale=1"/><style>#target {width: 100%;margin:0;padding:0;border:none;}</style><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" /><link href="' + settings.base_file_path + '/lib/anet-webfont.min.css" type="text/css" rel="stylesheet" /><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.slim.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.js"></script><script src="' + settings.base_file_path + '/lib/stackinfo.umd.js"></script><script src="' + settings.base_file_path + '/lib/manifest.js"></script><script src="' + settings.base_file_path + '/lib/vendor.js"></script></head><body><div id="target" width="100%"></div><script src="' + settings.base_file_path + '/lib/main.js"></script></body></html>')
+            ifrm.contentWindow.CryptoJS = CryptoJS
 
             timint = null
             doc.addEventListener('vue-init', () ->
