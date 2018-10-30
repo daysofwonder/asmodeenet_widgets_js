@@ -121,7 +121,7 @@ Parameters:
 * `targetElementSelector`: _string_, mandatory. The ID of the HTML tag used as target to place the Widget. It should be a CSS Path selector ID (_#IDSTRING_)
 * `options`: _object_, optional. Some global options available for all Widgets. Some specific Widgets could add mandatory option parametrizable using this `options` object. In this case, the options will be described in the [Widgets list](#widgets-list).
     - _`width`_: _mixte_, optional. If you want to force a specifc width for the Widget, indicate it here. It's taking the same type of value of the CSS width parameter: a specific width in pixel (`100px`) or in percentage (`50%`).
-    - _`height`_: _mixte_, optional. If you want to force a specifc height for the Widget, indicate it here. It's taking the same type of value of the CSS width parameter: a specific width in pixel (`100px`) or in percentage (`50%`).
+    - _`height`_: _mixte_, optional. If you want to force a specifc height for the Widget, indicate it here. It's taking the same type of value of the CSS height parameter: a specific height in pixel (`100px`) or in percentage (`50%`).
     - _`zoom`_: _float_, optional. A CSS zoom factor to apply on the Widget.
 
 Asmodee.net Widgets use Media queries for their display. So there are desktop views, mobile views, tablet views, etc. Playing with values of _`width`_ and _`zoom`_ allows to display Widgets with a desktop view, by example, in a small authorized space (to prevent the activation of the mobile view).
@@ -153,7 +153,7 @@ Example:
     - `name`: `vcard` *(mandatory)*
     - `options`:
         - `userProfile`: {id: [user ID]} *(mandatory)*
-        - `bodyHeight`: "[height in pixel or %]" *(optional)* _mixte_, If you want to force a specifc height for the bdoy part of the widget, indicate it here. It's taking the same type of value of the CSS width parameter: a specific width in pixel (`100px`) or in percentage (`50%`).
+        - `bodyHeight`: "[height in pixel or %]" *(optional)* _mixte_, If you want to force a specifc height for the bdoy part of the widget, indicate it here. It's taking the same type of value of the CSS height parameter: a specific height in pixel (`100px`) or in percentage (`50%`).
 
 
 | ![](/docs/screenshots/v-card-4.png) |
