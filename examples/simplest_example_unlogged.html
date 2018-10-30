@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+   <meta charset="utf-8">
+   <title>Demo Asmodee.net Widget</title>
+   <script src="an_sso.min.0.3.2-1.js"></script>
+   <script src="dist/0.0.4/an_wdg.min.js"></script>
+</head>
+<body>
+   <div id="vcard" style="height: 170px;"></div>
+
+   <script>
+
+       AsmodeeNet.init({}).discover().Widget.init({lang: 'en'});
+       document.addEventListener('vue-init', function () {
+           AsmodeeNet.injectWidget('v-card', 'vcard', {userProfile: {id: 4}});
+       });
+   </script>
+</body>
+</html>

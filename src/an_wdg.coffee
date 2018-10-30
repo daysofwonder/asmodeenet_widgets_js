@@ -7,6 +7,8 @@ window.AsmodeeNet.Widget = (->
         base_file_path: stackinfo()[0].file.split('/').slice(0, -1).join('/')
     }
 
+    injectWaitings = null
+
     getTrans = () ->
         lang = if settings.lang
             settings.lang
@@ -39,17 +41,21 @@ window.AsmodeeNet.Widget = (->
 
     injectMainWdgLib = () ->
         if CryptoJS == undefined
-            setTimeout(injectMainWdgLib, 100)
+            setTimeout injectMainWdgLib, 100
         else
             man = document.createElement('script')
             man.src = settings.base_file_path + '/lib/manifest.js'
             scripts = document.getElementsByTagName('script')[0]
             scripts.parentNode.insertBefore(man, scripts)
-            vend = document.createElement('script')
-            vend.src = settings.base_file_path + '/lib/vendor.js'
-            vend.onload = () -> window.AsmodeeNet.Widget.asnetapiOnLoad(true)
-            man.parentNode.insertBefore(vend, man.nextSibling)
-
+            waiterWebpack = () ->
+                if typeof window.webpackJsonp == 'undefined'
+                    setTimeout waiterWebpack, 100
+                else
+                    vend = document.createElement('script')
+                    vend.src = settings.base_file_path + '/lib/vendor.js'
+                    vend.onload = () -> window.AsmodeeNet.Widget.asnetapiOnLoad(true)
+                    man.parentNode.insertBefore(vend, man.nextSibling)
+            waiterWebpack()
 
     findElement = (cssSelector) ->
         if cssSelector.indexOf('#') != -1 then window.document.getElementById(cssSelector.replace('#', '')) else window.document.getElementsByClassName(cssSelector)[0]
@@ -71,6 +77,15 @@ window.AsmodeeNet.Widget = (->
             scopes: window.AsmodeeNet.getScopes(),
             avatar: window.AsmodeeNet.getIdentity().picture
         })
+
+    timeoutInject = () ->
+        if typeof window.asnet_wc == 'undefined'
+            setTimeout timeoutInject, 100
+        else
+            it = injectWaitings
+            injectWaitings = null
+            for params in it
+                window.AsmodeeNet.Widget.inject(params[0], params[1], params[2])
 
     inject: (name, targetElementSelector, options) ->
         if typeof window.asnet_wc != 'undefined'
@@ -112,9 +127,11 @@ window.AsmodeeNet.Widget = (->
                     setTimeout timint, 10
             timint()
         else
-            setTimeout( () ->
-                window.AsmodeeNet.Widget.inject(name, targetElementSelector, options)
-            , 10)
+            if injectWaitings
+                injectWaitings.push([name, targetElementSelector, options])
+            else
+                injectWaitings = [[name, targetElementSelector, options]]
+                setTimeout timeoutInject, 100
 
     asnetapiOnLoad: (mainToLoad) ->
         if mainToLoad

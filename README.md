@@ -32,14 +32,14 @@ npm install --save git+https://github.com/daysofwonder/asmodeenet_widgets_js.git
 
 ### a) Inject the library
 
-In your HTML code, you should load the main JS library of this Widgets library just after loading the Asmodee.net SSO JS library.
+In your HTML code, you should load the main JS library of this Widgets library just after loading the [AsmodeeNet SSO JS Library](https://github.com/daysofwonder/asmodeenet_sso_js).
 
 ```html
 <script src="an_sso.min.0.3.2-1.js"></script>
-<script src="dist/0.0.3/an_wdg.min.js"></script>
+<script src="dist/0.0.4/an_wdg.min.js"></script>
 ```
 
-When you deploy your code, it's important to deploy all the content of the directory corresponding to the version you use. For example, if you use the first distributed version, `0.0.3`, you should deploy the entire `dist/0.0.3` directory.
+When you deploy your code, it's important to deploy all the content of the directory corresponding to the version you use. For example, if you use the first distributed version, `0.0.4`, you should deploy the entire `dist/0.0.4` directory.
 
 ### b) HTML tag(s)
 
@@ -56,7 +56,7 @@ You can add several tags in the page, for different Widgets, or add the same Wid
 
 ### c) Javascript call
 
-The first step is to call the initialization of the Widget library, just after the one of the SSO library.
+The first step is to call the initialization of the Widget library, just after the one of the [AsmodeeNet SSO JS Library](https://github.com/daysofwonder/asmodeenet_sso_js).
 
 ```javascript
 // The SSO initialization and discover call
