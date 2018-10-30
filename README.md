@@ -148,6 +148,21 @@ Example:
 
 ### Widgets list
 
+- `V-Card` Display a v-card for a given user, with some generic, and public, information. Usable in unlogged and logged mode.
+    - `name`: `vcard` *(mandatory)*
+    - `options`:
+        - `userProfile`: {id: [user ID]} *(mandatory)*
+
+
+| ![](/docs/screenshots/v-card-4.png) |
+|:--:|
+| *V-card large space (example: _{userProfile: {id: 4}}_)* |
+
+| ![](/docs/screenshots/v-card-618-mobile.png) |
+|:--:|
+| *V-card tiny space (example: _{userProfile: {id: 618}}_)* |
+
+
 - `User activities` (of the current connected user or the public activities of another user). if userProfile.id is set to `'me'`, the Widget is usable only in `logged` mode. If it's set to a user ID, it can be used in `logged` and `unlogged` modes.
     - `name`: `user-activities` *(mandatory)*
     - `options`:
