@@ -93,7 +93,7 @@ function userIsConnected () {
 
 This injects the Widget named *user_activities* inside the HTML tag with the id *user_activities_tgt*. And that's all!
 
-To see the simplest usage you can do with the Widgets library, see [the simplest example](#the-simplest-use-of-the-widgets-library) in the [Examples part](#examples)
+To see the simplest usage you can do with the Widgets library, see [the simplest example](#the-simplest-use-of-the-widgets-library) in the [Examples section](#examples)
 `Important`: When you call the SSO init library, you pass a *client_id* for the configuration of the user's connection. To be able to use the Widget library, the client id of your app should be authorized server side. For this, contact us so that we can whitelist your app.
 
 ## Advanced Use
@@ -221,7 +221,7 @@ Example:
 
 ## Examples
 
-To launch the examples, type the following commands in shell:
+To launch the examples, type the following commands in a shell:
 
 ```bash
 npm install
@@ -232,15 +232,15 @@ You can find 2 examples:
 
 ### The simplest use of the Widgets library
 
-In the file `examples/simplest_example_unlogged.html`, you can find the simplest usage of the library you can do. Without need to have token for app or for a user, there is no need to login user for this.
+In the file `examples/simplest_example_unlogged.html`, you can find the simplest usage of the library you can do. Without the need to have a token for the app or for an an eventual user, this example doesn't need any login process.
 
-After webserver launched, open a browser, and go to [http://localhost:8080/simplest_example_unlogged.html](http://localhost:8080/simplest_example_unlogged.html)
+After the webserver is launched, open a browser, and go to [http://localhost:8080/simplest_example_unlogged.html](http://localhost:8080/simplest_example_unlogged.html)
 
 ### All uses in a page
 
-In this one, lcoated in `examples/index.html`, you can find a complex usage of the Widgets library. With an identified 3rd party application (need of a configured SSO librayr with `client_id`, `redirect_uri`, ...) and with usage of both logged and unlogged widgets.
+In this one, located in `examples/index.html`, you can find a complex usage of the Widgets library. With an identified 3rd party application (need of a configured SSO library with `client_id`, `redirect_uri`, ...) and with usage of both logged and unlogged widgets.
 
 
 You can change the configuration for SSO (client_id, API Url, ...) in the file `examples/index.html`.
 
-After webserver launched, open a browser, and go to [http://localhost:8080](http://localhost:8080)
+After the webserver is launched, open a browser, and go to [http://localhost:8080](http://localhost:8080)
