@@ -4,16 +4,27 @@
    <meta charset="utf-8">
    <title>Demo Asmodee.net Widget</title>
    <script src="an_sso.min.0.3.2-1.js"></script>
-   <script src="dist/0.0.4/an_wdg.min.js"></script>
+   <!-- Load file for dev -->
+   <!-- <script src="lib/stackinfo.umd.js"></script>
+   <script src="an_wdg.js"></script>
+   <script src="trans.js"></script> -->
+
+   <!-- Load file for prod -->
+   <script src="dist/0.0.5/an_wdg.min.js"></script>
+   <style>
+    body {
+       background-color: black;
+    }
+    </style>
 </head>
 <body>
-   <div id="vcard" style="height: 170px;"></div>
+   <div id="vcard" style="height: 200px;width: 500px;"></div>
 
    <script>
 
        AsmodeeNet.init({}).discover().Widget.init({lang: 'en'});
        document.addEventListener('vue-init', function () {
-           AsmodeeNet.injectWidget('v-card', 'vcard', {userProfile: {id: 4}});
+           AsmodeeNet.injectWidget('v-card', 'vcard', {userProfile: {id: 4}, height: "200px", bodyHeight: "180px", zoom: .9});
        });
    </script>
 </body>
