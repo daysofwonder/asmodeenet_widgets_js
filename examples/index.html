@@ -1,5 +1,6 @@
 <html>
     <head>
+        <meta charset="utf-8" />
         <title>Asmodee.net JS Widget library example n°1</title>
         <style>
         h1 {font-size: 53px;margin: 0;padding: 0;color: #fcea6a;font-weight: normal;}
@@ -36,7 +37,7 @@
         <script src="trans.js"></script> -->
 
         <!-- Load file for prod -->
-        <script src="dist/0.0.4/an_wdg.min.js"></script>
+        <script src="dist/0.0.5/an_wdg.min.js"></script>
     </head>
     <body>
         <script>AsmodeeNet.trackCb(false);</script>
@@ -83,7 +84,7 @@
             return document.getElementById(idOrClass);
         }
         function displayWidget(name, options) {
-            options = options || {};
+            options = options || {};
             AsmodeeNet.injectWidget(name, '#' + name + '-target',window.AsmodeeNet.extend({
                 module: name,
                 zoom: '0.7'

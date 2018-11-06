@@ -18,7 +18,9 @@ The library can be used for logged or unlogged user. For unlogged users, not all
 * [Advanced use](#advanced-use)
     * [Global options](#global-options)
     * [Widgets list](#widgets-list)
-* [Examples](#example)
+* [Examples](#examples)
+    * [The simplest use of the Widgets library](#the-simplest-use-of-the-widgets-library)
+    * [All uses in one page](#all-uses-in-one-page)
 
 ## Installation
 
@@ -36,10 +38,10 @@ In your HTML code, you should load the main JS library of this Widgets library j
 
 ```html
 <script src="an_sso.min.0.3.2-1.js"></script>
-<script src="dist/0.0.4/an_wdg.min.js"></script>
+<script src="dist/0.0.5/an_wdg.min.js"></script>
 ```
 
-When you deploy your code, it's important to deploy all the content of the directory corresponding to the version you use. For example, if you use the first distributed version, `0.0.4`, you should deploy the entire `dist/0.0.4` directory.
+When you deploy your code, it's important to deploy all the content of the directory corresponding to the version you use. For example, if you use the first distributed version, `0.0.5`, you should deploy the entire `dist/0.0.5` directory.
 
 ### b) HTML tag(s)
 
@@ -91,6 +93,7 @@ function userIsConnected () {
 
 This injects the Widget named *user_activities* inside the HTML tag with the id *user_activities_tgt*. And that's all!
 
+To see the simplest usage you can do with the Widgets library, see [the simplest example](#the-simplest-use-of-the-widgets-library) in the [Examples section](#examples)
 `Important`: When you call the SSO init library, you pass a *client_id* for the configuration of the user's connection. To be able to use the Widget library, the client id of your app should be authorized server side. For this, contact us so that we can whitelist your app.
 
 ## Advanced Use
@@ -216,15 +219,28 @@ Example:
 |:--:|
 | *Buddies collection* |
 
-## Example
+## Examples
 
-To launch the example, type the following commands in shell:
+To launch the examples, type the following commands in a shell:
 
 ```bash
 npm install
 npm run dev-server
 ```
 
+You can find 2 examples:
+
+### The simplest use of the Widgets library
+
+In the file `examples/simplest_example_unlogged.html`, you can find the simplest usage of the library you can do. Without the need to have a token for the app or for an an eventual user, this example doesn't need any login process.
+
+After the webserver is launched, open a browser, and go to [http://localhost:8080/simplest_example_unlogged.html](http://localhost:8080/simplest_example_unlogged.html)
+
+### All uses in a page
+
+In this one, located in `examples/index.html`, you can find a complex usage of the Widgets library. With an identified 3rd party application (need of a configured SSO library with `client_id`, `redirect_uri`, ...) and with usage of both logged and unlogged widgets.
+
+
 You can change the configuration for SSO (client_id, API Url, ...) in the file `examples/index.html`.
 
-Open a browser, and go to [http://localhost:8080](http://localhost:8080)
+After the webserver is launched, open a browser, and go to [http://localhost:8080](http://localhost:8080)
