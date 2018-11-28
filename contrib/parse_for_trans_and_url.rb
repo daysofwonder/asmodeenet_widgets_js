@@ -48,7 +48,7 @@ Dir.glob(File.join(File.realpath(IS_ROOT), 'src', 'views', '**', '*.twig')).each
                     allurls.merge! urls
                 end
             rescue SyntaxError => se
-                p entry
+                p transentry
                 print "\n"
                 print se
                 p fnd
