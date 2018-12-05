@@ -123,8 +123,8 @@ Parameters:
 * `name`: _string_, mandatory. The name of the Widget you want to add. You can find the list here [Widgets list](#widgets-list)
 * `targetElementSelector`: _string_, mandatory. The ID of the HTML tag used as target to place the Widget. It should be a CSS Path selector ID (_#IDSTRING_)
 * `options`: _object_, optional. Some global options available for all Widgets. Some specific Widgets could add mandatory option parametrizable using this `options` object. In this case, the options will be described in the [Widgets list](#widgets-list).
-    - _`width`_: _mixte_, optional. If you want to force a specifc width for the Widget, indicate it here. It's taking the same type of value of the CSS width parameter: a specific width in pixel (`100px`) or in percentage (`50%`).
-    - _`height`_: _mixte_, optional. If you want to force a specifc height for the Widget, indicate it here. It's taking the same type of value of the CSS height parameter: a specific height in pixel (`100px`) or in percentage (`50%`).
+    - _`width`_: _mixed_, optional. If you want to force a specifc width for the Widget, indicate it here. It's taking the same type of value of the CSS width parameter: a specific width in pixel (`100px`) or in percentage (`50%`).
+    - _`height`_: _mixed_, optional. If you want to force a specifc height for the Widget, indicate it here. It's taking the same type of value of the CSS height parameter: a specific height in pixel (`100px`) or in percentage (`50%`).
     - _`zoom`_: _float_, optional. A CSS zoom factor to apply on the Widget.
 
 Asmodee.net Widgets use Media queries for their display. So there are desktop views, mobile views, tablet views, etc. Playing with values of _`width`_ and _`zoom`_ allows to display Widgets with a desktop view, by example, in a small authorized space (to prevent the activation of the mobile view).
@@ -156,7 +156,7 @@ Example:
     - `name`: `v-card` *(mandatory)*
     - `options`:
         - `userProfile`: {id: [user ID]} *(mandatory)*
-        - `bodyHeight`: "[height in pixel or %]" *(optional)* _mixte_, If you want to force a specifc height for the bdoy part of the widget, indicate it here. It's taking the same type of value of the CSS height parameter: a specific height in pixel (`100px`) or in percentage (`50%`).
+        - `bodyHeight`: "[height in pixel or %, or null]" *(optional)* _mixed_, If you want to force a specifc height for the body part of the panel's widget, indicate it here. It's taking the same type of value of the CSS height parameter: a specific height in pixel (`100px`) or in percentage (`50%`). You can pass 'null' value to don't force the sub panel-body height (default is '100%')
 
 
 | ![](/docs/screenshots/v-card-4.png) |
@@ -182,18 +182,13 @@ Example:
 |:--:|
 | *Current User activities with Desktop-like space (example: _{userProfile: {id: 'me'}}_)* |
 
-| ![](/docs/screenshots/public_activities_of_a_user.png) |
+| ![](/docs/screenshots/public_activities_of_a_user_mobile.png) |
 |:--:|
-| *Public activities of a specific user (_{userProfile: {id: 618}}_)* |
+| *Public activities of a specific user with mobile-like space (_{userProfile: {id: 618}}_)* |
 
-- `User's public collection`. Usable in `logged` and `unlogged` mode.
-    - `name`: `user-public-collection`
-    - `options`:
-        - `userProfile`: {id: ['me' OR user ID]} *(mandatory)*
-
-| ![](/docs/screenshots/public_collection_of_a_user.png) |
+| ![](/docs/screenshots/public_activities_of_a_user_desktop.png) |
 |:--:|
-| *Public collection of a specific user (example: _{userProfile: {id: 618}}_)* |
+| *Public activities of a specific user with Desktop-like space (_{userProfile: {id: 618}}_)* |
 
 
 - `User's buddies' activities`. Only in `logged` mode.
@@ -202,10 +197,6 @@ Example:
 | ![](/docs/screenshots/buddies_activity_mobile.png) |
 |:--:|
 | *Buddies activity in mobile view* |
-
-| ![](/docs/screenshots/buddies_activity_tablet.png) |
-|:--:|
-| *Buddies activity in tablet view* |
 
 | ![](/docs/screenshots/buddies_activity_desktop.png) |
 |:--:|

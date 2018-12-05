@@ -24,11 +24,11 @@
         #buddies-collection-target {margin:10px;width: 440px; height: 190px;}
         #user-public-collection-target {margin:10px;width: 440px; height: 300px;}
         #user-public-activities-target {margin:10px;width: 500px; height: 644px;}
-        #user-public-collection-unlogged-target {margin:10px;width: 440px; height: 300px;}
-        #user-public-activities-unlogged-target {margin:10px;width: 500px; height: 644px;}
+        #user-public-ranking-unlogged-target {margin:10px;width: 440px; height: 300px; float: right;}
+        #user-public-activities-unlogged-target {margin:10px;width: 500px; height: 600px; }
         #vcard-4-target {margin: 10px; width: 550px;height: 200px;}
-        #vcard-618-target {margin: 5px; width: 170px;height: 320px;float: right;}
-        #container-wdgs, #unlogged-container-wdgs {display: flex;flex-wrap:wrap;}
+        #vcard-618-target {margin: 5px; width: 170px;height: 320px; float: right;}
+        #container-wdgs, .unlogged-container-wdgs {display: flex;flex-wrap:wrap;}
         </style>
         <script src="an_sso.min.0.3.2-1.js"></script>
         <!-- Load file for dev -->
@@ -37,7 +37,7 @@
         <script src="trans.js"></script> -->
 
         <!-- Load file for prod -->
-        <script src="dist/0.0.5/an_wdg.min.js"></script>
+        <script src="dist/0.0.6/an_wdg.min.js"></script>
     </head>
     <body>
         <script>AsmodeeNet.trackCb(false);</script>
@@ -68,11 +68,9 @@
             <div class="container-wdgs" style="display: none;">
                 <div id="buddies-activities-target"></div>
                 <div id="buddies-collection-target"></div>
-                <div id="user-public-collection-target"></div>
                 <div id="user-public-activities-target"></div>
             </div>
             <div class="unlogged-container-wdgs">
-                <div id="user-public-collection-unlogged-target"></div>
                 <div id="user-public-activities-unlogged-target"></div>
             </div>
         </div>
@@ -101,8 +99,7 @@
                 displayWidget('user-activities', {userProfile: {id: 'me'}});
                 displayWidget('buddies-activities');
                 displayWidget('buddies-collection', {bodyHeight: '160px'});
-                displayWidget('user-public-collection', {userProfile: {id: 618}});
-                displayWidget('user-public-activities', {module: 'user-activities', userProfile: {id: 618}});
+                displayWidget('user-public-activities', {module: 'user-activities', userProfile: {id: 618}, height: null, bodyHeight: null});
                 displayWidget('vcard-618', {module: 'v-card', userProfile: {id: 5}, width:'180px', height: '280px', bodyHeight: '200px', zoom: .8});
                 var wdgs = findMe('unlogged-container-wdgs', true);
                 for(var i = 0; i < wdgs.length; i++) {
@@ -147,8 +144,7 @@
             },
         }).discover();
         AsmodeeNet.Widget.init({lang: 'fr'});
-        displayWidget('user-public-collection-unlogged', {module: 'user-public-collection', userProfile: {id: 618}});
-        displayWidget('user-public-activities-unlogged', {module: 'user-activities', userProfile: {id: 618}});
+        displayWidget('user-public-activities-unlogged', {module: 'user-activities', userProfile: {id: 618}, height: null, bodyHeight: null});
         displayWidget('vcard-4', {module: 'v-card', userProfile: {id: 4}, height: '200px', bodyHeight: '180px', zoom: .9});
         </script>
     </body>
