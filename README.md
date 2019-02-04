@@ -38,10 +38,10 @@ In your HTML code, you should load the main JS library of this Widgets library j
 
 ```html
 <script src="an_sso.min.0.3.2-1.js"></script>
-<script src="dist/0.0.5/an_wdg.min.js"></script>
+<script src="dist/0.0.7/an_wdg.min.js"></script>
 ```
 
-When you deploy your code, it's important to deploy all the content of the directory corresponding to the version you use. For example, if you use the first distributed version, `0.0.5`, you should deploy the entire `dist/0.0.5` directory.
+When you deploy your code, it's important to deploy all the content of the directory corresponding to the version you use. For example, if you use the first distributed version, `0.0.7`, you should deploy the entire `dist/0.0.7` directory.
 
 ### b) HTML tag(s)
 
