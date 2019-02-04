@@ -10,21 +10,29 @@
    <script src="trans.js"></script> -->
 
    <!-- Load file for prod -->
-   <script src="dist/0.0.6/an_wdg.min.js"></script>
+   <script src="dist/0.0.7/an_wdg.min.js"></script>
    <style>
     body {
        background-color: black;
+    }
+    #games_counter_container {
+        float:right;
+        position: absolute;
+        top: 10px;
+        right: 5px;
     }
     </style>
 </head>
 <body>
    <div id="vcard" style="height: 200px;width: 500px;"></div>
+   <div id="games_counter_container" style="height: 40px;width: 350px;"></div>
 
    <script>
 
        AsmodeeNet.init({}).discover().Widget.init({lang: 'en'});
        document.addEventListener('vue-init', function () {
            AsmodeeNet.injectWidget('v-card', 'vcard', {userProfile: {id: 4}, height: "200px", bodyHeight: "180px", zoom: .9});
+           AsmodeeNet.injectWidget('game-counter', 'games_counter_container', {top:'0px', text: {top: '0px', 'font-weight': 'bold'}, zoom: .9});
        });
    </script>
 </body>
