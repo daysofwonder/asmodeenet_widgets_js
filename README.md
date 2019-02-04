@@ -210,6 +210,14 @@ Example:
 |:--:|
 | *Buddies collection* |
 
+
+- `All Games counter` Display a dynamic counter which show the actual number of online games played on the Asmodee.net platfome, all games and all players included. (you can see an usage in the [Simplest example](#the-simplest-use-of-the-widgets-library))
+    - `name`: `game-counter`
+
+| ![](/docs/screenshots/buddies_collection.png) |
+|:--:|
+| *Buddies collection* |
+
 ## Examples
 
 To launch the examples, type the following commands in a shell:
